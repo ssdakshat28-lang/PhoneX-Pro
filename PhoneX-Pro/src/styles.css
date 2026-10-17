@@ -1,0 +1,106 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Unbounded", system-ui, sans-serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-neon: var(--neon);
+  --color-neon-2: var(--neon-2);
+  --color-star: var(--star);
+  --color-screen: var(--screen);
+}
+
+:root {
+  --radius: 1rem;
+  --background: oklch(0.12 0.012 250);
+  --foreground: oklch(0.97 0.005 250);
+  --card: oklch(0.18 0.015 250);
+  --card-foreground: oklch(0.97 0.005 250);
+  --popover: oklch(0.16 0.015 250);
+  --popover-foreground: oklch(0.97 0.005 250);
+  --primary: oklch(0.85 0.17 195);
+  --primary-foreground: oklch(0.14 0.02 250);
+  --secondary: oklch(0.22 0.015 250);
+  --secondary-foreground: oklch(0.97 0.005 250);
+  --muted: oklch(0.22 0.015 250);
+  --muted-foreground: oklch(0.68 0.02 250);
+  --accent: oklch(0.26 0.02 250);
+  --accent-foreground: oklch(0.97 0.005 250);
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.85 0.17 195);
+  --neon: oklch(0.85 0.17 195);
+  --neon-2: oklch(0.72 0.2 330);
+  --star: oklch(0.85 0.16 85);
+  --screen: oklch(0.08 0.01 250);
+
+  --phone-black: linear-gradient(145deg, oklch(0.32 0.01 250), oklch(0.12 0.005 250));
+  --phone-silver: linear-gradient(145deg, oklch(0.92 0.005 250), oklch(0.62 0.01 250));
+  --phone-purple: linear-gradient(145deg, oklch(0.55 0.16 300), oklch(0.28 0.12 295));
+
+  --gradient-neon: linear-gradient(120deg, var(--neon), var(--neon-2));
+  --shadow-glow: 0 0 60px -10px color-mix(in oklab, var(--neon) 55%, transparent);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; }
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--card) 55%, transparent);
+  backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid var(--border);
+}
+@utility text-gradient {
+  background: var(--gradient-neon);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility bg-gradient-neon { background: var(--gradient-neon); }
+@utility shadow-glow { box-shadow: var(--shadow-glow); }
+@utility bg-grid {
+  background-image:
+    radial-gradient(ellipse at top, color-mix(in oklab, var(--neon) 18%, transparent), transparent 60%),
+    radial-gradient(ellipse at bottom right, color-mix(in oklab, var(--neon-2) 14%, transparent), transparent 55%);
+}
+
+@keyframes float { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-14px) rotate(-2deg); } }
+@utility animate-float { animation: float 6s ease-in-out infinite; }
